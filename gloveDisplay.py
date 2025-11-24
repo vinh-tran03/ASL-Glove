@@ -1,3 +1,10 @@
+##########################################################################################
+# This code connects to the HC-05 bluetooth component of the arduino on COM6 for Windows #
+# (Will be different on mac, still needs testing on mac)                                 #
+# The code also displays a GUI the shows the letter detected                             #
+# Author: Vinh Tran                                                                      #
+##########################################################################################
+
 import serial
 import time
 import threading
