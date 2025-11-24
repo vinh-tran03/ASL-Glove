@@ -3,7 +3,7 @@ import time
 
 # Windows: BLUETOOTH_PORT = "COM4"
 # Mac/Linux: BLUETOOTH_PORT = "/dev/tty.HC-05-DevB"
-BLUETOOTH_PORT = "COM4"
+BLUETOOTH_PORT = "COM6"
 BAUD_RATE = 9600
 
 def main():
