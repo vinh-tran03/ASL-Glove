@@ -41,7 +41,7 @@ void hc05_transmit(String message, bool nl = false) {
   // if (nl == true) Serial.println("");
 
   // Version 2: SoftwareSerial
-  bluetooth.print(message);
+  bluetooth.println(message);
   if (nl == true) bluetooth.println("");
 
 };
