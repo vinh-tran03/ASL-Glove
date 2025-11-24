@@ -1,9 +1,9 @@
 import serial
 import time
+import threading
 import tkinter as tk
 from tkinter import scrolledtext
 
-# Replace with the Outgoing COM port of your HC-05
 BLUETOOTH_PORT = "COM6"
 BAUD_RATE = 9600
 
@@ -14,7 +14,7 @@ def read_from_bluetooth(bt_serial, text_widget):
                 data = bt_serial.readline().decode(errors='ignore').strip()
                 if data:
                     text_widget.insert(tk.END, f"{data}\n")
-                    text_widget.see(tk.END)  # scroll to bottom
+                    text_widget.see(tk.END)
                     with open("gesture_log.txt", "a") as f:
                         f.write(data + "\n")
         except serial.SerialException:
@@ -27,10 +27,12 @@ def read_from_bluetooth(bt_serial, text_widget):
 def start_connection():
     try:
         bt = serial.Serial(BLUETOOTH_PORT, BAUD_RATE, timeout=2)
-        time.sleep(3)  # wait for Bluetooth connection to stabilize
+        time.sleep(3)  # allow HC-05 to stabilize
         print("Connected to ASL Glove!")
         status_label.config(text="Connected!", fg="green")
-        read_from_bluetooth(bt, text_area)
+        
+        # Start reading in a separate thread
+        threading.Thread(target=read_from_bluetooth, args=(bt, text_area), daemon=True).start()
     except Exception as e:
         print("Could not connect:", e)
         status_label.config(text=f"Connection failed: {e}", fg="red")
