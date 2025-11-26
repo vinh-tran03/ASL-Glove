@@ -11,7 +11,9 @@ import threading
 import tkinter as tk
 from tkinter import scrolledtext
 
-BLUETOOTH_PORT = "COM6"
+# Windows = COM6
+# Mac = /dev/cu.HC-05
+BLUETOOTH_PORT = "/dev/cu.HC-05"
 BAUD_RATE = 9600
 
 def read_from_bluetooth(bt_serial, text_widget):
