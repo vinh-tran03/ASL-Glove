@@ -1,7 +1,7 @@
 ##########################################################################################
 # This code connects to the HC-05 bluetooth component of the arduino on COM6 for Windows #
-# (Will be different on mac, still needs testing on mac)                                 #
-# The code also displays a GUI the shows the letter detected                             #
+# and on /dev/cu.HC-05 for Mac                                                           #
+# The code also displays a GUI that shows the letter detected                            #
 # Author: Vinh Tran                                                                      #
 ##########################################################################################
 
@@ -13,7 +13,7 @@ from tkinter import scrolledtext
 
 # Windows = COM6
 # Mac = /dev/cu.HC-05
-BLUETOOTH_PORT = "/dev/cu.HC-05"
+BLUETOOTH_PORT = "COM6"
 BAUD_RATE = 9600
 
 def read_from_bluetooth(bt_serial, text_widget):
